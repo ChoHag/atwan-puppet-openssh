@@ -1,0 +1,25 @@
+Port <%= @config_Port %>
+AddressFamily <%= @config_AddressFamily %>
+<% [@config_ListenAddress].flatten.each { |address| -%>
+ListenAddress <%= address %>
+<% } -%>
+
+Protocol <%= [@config_Protocol].flatten.join(',') %>
+<% [@config_HostKey].flatten.each { |key| -%>
+HostKey <%= key %>
+<% } -%>
+
+SyslogFacility <%= @config_SyslogFacility %>
+LogLevel <%= @config_LogLevel %>
+
+UsePAM <%= @config_UsePAM %>
+PermitRootLogin <%= @config_PermitRootLogin %>
+
+X11Forwarding <%= @config_X11Forwarding %>
+
+AcceptEnv <%= [@config_AcceptEnv].flatten.join(' ') %>
+
+<% @config_Subsystem.each_pair { |name, command| -%>
+Subsystem <%= name %> <%= command %>
+<% } -%>
+
